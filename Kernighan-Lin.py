@@ -1,22 +1,7 @@
 from CommunityNetwork import Graph
 
-def CreateGraph():
+def create_graph():
     return Graph()
-
-
-# Example Graph
-x = CreateGraph()
-x.AddNodes(8)
-edges_ = [[0,1,8], [4,2,3], [0,6,7], [0,2,9], [0,4,2], [2,7,9], [6,5,8], [5,7,5], [7,3,8], [3,5,8]]
-# Add edges
-for e in edges_:
-    x.AddEdge(e[0],e[1],e[2])
-
-x.print()
-
-# Clusters for example
-cluster1 = [3,5,2,0]
-cluster2 = [6,7,4,1]
 
 def KernighanLin(graph, initial):
 
@@ -148,7 +133,25 @@ def KernighanLin(graph, initial):
 
     KernighanLin(graph, new_clusters)
 
-print("\n---------- KERNIGHAN-LIN ALGORITHM ----------")
+## Main
+
+
+# Example Graph
+x = create_graph()
+x.add_nodes(8)
+edges_ = [[0,1,8], [4,2,3], [0,6,7], [0,2,9], [0,4,2], [2,7,9], [6,5,8], [5,7,5], [7,3,8], [3,5,8]]
+
+# Add edges
+for e in edges_:
+    x.add_edge(e[0],e[1],e[2])
+
+# Print graph
+x.print()
+
+# Example: pre-defined clusters
+cluster1 = [4,7,3,0]
+cluster2 = [6,5,2,1]
 
 # Run Kernighan-Lin algorithm
+print("\n---------- KERNIGHAN-LIN ALGORITHM ----------")
 KernighanLin(x, [cluster1, cluster2])

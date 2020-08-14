@@ -56,7 +56,7 @@ class Graph:
         self.nodes = nodes
         self.edges = edges
 
-    def CreateNode(self, name = 'Nameless'):
+    def create_node(self, name = 'Nameless'):
 
         """
         Create node object and add to graph
@@ -76,7 +76,7 @@ class Graph:
             node.Ix = 0
             node.Dx = 0
 
-    def AddEdge(self, start, end, length=1, type='undirected'):
+    def add_edge(self, start, end, length=1, type='undirected'):
 
         """
         Add new egdes to graph
@@ -90,7 +90,7 @@ class Graph:
                     flag = 1
 
         if flag == 0:
-            start = self.CreateNode(start)
+            start = self.create_node(start)
 
         flag = 0
         while flag == 0:
@@ -100,19 +100,19 @@ class Graph:
                     flag = 1
 
         if flag == 0:
-            start = self.CreateNode(end)
+            start = self.create_node(end)
 
         edge = Edge(start, end, length, type)
         self.edges.append(edge)
 
-    def AddNodes(self, amount=2):
+    def add_nodes(self, amount=2):
 
         """
         Add new nodes to graph
          """
 
         for i in range(amount):
-            self.CreateNode(i)
+            self.create_node(i)
 
     def print(self):
 
