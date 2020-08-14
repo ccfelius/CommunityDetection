@@ -3,38 +3,18 @@ from CommunityNetwork import Graph
 def CreateGraph():
     return Graph()
 
-def AddNodes(graph, amount=2):
-    for i in range(amount):
-        graph.CreateNode(i)
 
-
+# Example Graph
 x = CreateGraph()
-AddNodes(x, 8)
-
-# Test Example
-# _edges_ = [[7,4], [4,0], [1,2], [1,5], [6,0], [5,3], [5,2], [3,2], [2,0]]
-# for e in _edges_:
-#     x.AddEdge(e[0],e[1])
-
-
-# other example
+x.AddNodes(8)
 edges_ = [[0,1,8], [4,2,3], [0,6,7], [0,2,9], [0,4,2], [2,7,9], [6,5,8], [5,7,5], [7,3,8], [3,5,8]]
 # Add edges
 for e in edges_:
     x.AddEdge(e[0],e[1],e[2])
 
-# Print edges from graph
-print("Edges from Graph:")
-for edge in x.edges:
-    edge.print()
-print()
+x.print()
 
-# Initial clusters
-# Clusters from test example
-# cluster1 = [7,4,1,6]
-# cluster2 = [3,5,2,0]
-
-# Clusters for other example
+# Clusters for example
 cluster1 = [3,5,2,0]
 cluster2 = [6,7,4,1]
 
@@ -62,10 +42,7 @@ def KernighanLin(graph, initial):
     def best_edge(graph, clusters, print_=True):
 
         swappairs = []
-        for node in graph.nodes:
-            node.Ix = 0
-            node.Ex = 0
-            node.Dx = 0
+        graph.reset()
 
         for edge in graph.edges:
             if edge.start.name in initial[0] and edge.end.name in initial[0]:
@@ -81,7 +58,7 @@ def KernighanLin(graph, initial):
         for node in graph.nodes:
             node.Dx = node.Ex - node.Ix
 
-        # Check whether there is improvement possible
+        # Check whether improvement is possible
         temp = len(graph.nodes)
         count = 0
         for node in graph.nodes:
@@ -113,8 +90,6 @@ def KernighanLin(graph, initial):
                         elif i.name == n_:
                             y = i
                             counter += 1
-                        else:
-                            continue
 
                 length = 0
                 for j in graph.edges:
@@ -140,7 +115,7 @@ def KernighanLin(graph, initial):
         # Return for method best_edge
         return max
 
-    # Method that swaps pairs
+    # Pair swapping among clusters
     def swap(clusters, pair):
 
         if pair[0] in clusters[0]:
@@ -157,7 +132,6 @@ def KernighanLin(graph, initial):
         return [clusters[0], clusters[1]]
 
 
-    # Use methods
 
     in_costs = total_costs(graph, initial)
     if best_edge(graph, initial) == False:
@@ -174,5 +148,7 @@ def KernighanLin(graph, initial):
 
     KernighanLin(graph, new_clusters)
 
-print("---------- KERNIGHAN-LIN ALGORITHM ----------")
+print("\n---------- KERNIGHAN-LIN ALGORITHM ----------")
+
+# Run Kernighan-Lin algorithm
 KernighanLin(x, [cluster1, cluster2])

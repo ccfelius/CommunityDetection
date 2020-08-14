@@ -1,8 +1,8 @@
 # Community Detection: Kernighan-Lin (Bipartite)
 
-Created Kernighan-Lin algorithm that, for now, only processes very simple graphs and prints intermediate results. Few examples are included. Will create manual later. Also update to more partitions is expected.
+Created Kernighan-Lin algorithm that, for now, only processes simple graphs and prints intermediate results. One example is included.
 
 ## Constraints:
 
 * Only processes undirected graphs
-* Not extensively tested on larger graphs
+* Not optimized for large graphs
